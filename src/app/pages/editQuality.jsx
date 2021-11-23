@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
-import EditForm from '../components/ui/editForm'
 import qualityService from '../services/quality.service'
 import { toast } from 'react-toastify'
+import QualityForm from '../components/ui/qualityForm'
 
 const EditQualityPage = () => {
   const id = useParams().id
@@ -21,7 +21,6 @@ const EditQualityPage = () => {
   const getQuality = async (id) => {
     try {
       const data = await qualityService.get(id)
-      console.log(data)
       return data.content
     } catch (error) {
       const { message } = error.response.data
@@ -41,7 +40,7 @@ const EditQualityPage = () => {
     <>
       <h1>Edit Quality Page</h1>{' '}
       {quality !== null ? (
-        <EditForm data={quality} onSubmit={handleSubmit} />
+        <QualityForm data={quality} onSubmit={handleSubmit} />
       ) : (
         'Loading...'
       )}
